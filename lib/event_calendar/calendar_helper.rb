@@ -201,13 +201,16 @@ module EventCalendar
           	
           	
           	new = total_deductions_or_additions + user_balance
-          	cal << %(____)
+
           	cal << %(#{new})
+          	cal << %(____)
             cal << %(#{day.day})
+            new = 0
+            user_balance = 0
+            total_deductions_or_additions = 0
           end
           cal << %(</td>)
-          user_balance = 0
-          total_deductions_or_additions = 0
+
         end
         
         cal << %(</tr>)
