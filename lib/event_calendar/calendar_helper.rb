@@ -187,6 +187,17 @@ module EventCalendar
           if options[:link_to_day_action]
             cal << day_link(day.day, day, options[:link_to_day_action])
           else
+          	total = 0
+          	
+          	options[:event_strips].each do |strip|
+          		strip[row_num*7, 7].each_with_index do |event, index|
+          			if event
+          				total += event.value
+          			end
+          		end
+          	end
+          	
+          	cal << %(total)
             cal << %(#{day.day})
           end
           cal << %(</td>)
