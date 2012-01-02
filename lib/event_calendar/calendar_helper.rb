@@ -197,7 +197,7 @@ module EventCalendar
           		end
           	end
           	
-          	cal << %(total)
+          	cal << %(#{total})
             cal << %(#{day.day})
           end
           cal << %(</td>)
