@@ -188,22 +188,25 @@ module EventCalendar
             cal << day_link(day.day, day, options[:link_to_day_action])
           else
           	total_deductions_or_additions = 0
+          	user_balance = 0
           	
           	options[:event_strips].each do |strip|
           		strip[row_num*7, 7].each_with_index do |event, index|
           			if event
           				total_deductions_or_additions += event.value
+          				user_balance = event.total
           			end
           		end
           	end
           	
           	
-          	new = total_deductions_or_additions + event.total
+          	new = total_deductions_or_additions + user_balance
           	cal << %(____)
           	cal << %(#{new})
             cal << %(#{day.day})
           end
           cal << %(</td>)
+          user_balance = 0
           total_deductions_or_additions = 0
         end
         
