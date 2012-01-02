@@ -187,21 +187,26 @@ module EventCalendar
           if options[:link_to_day_action]
             cal << day_link(day.day, day, options[:link_to_day_action])
           else
-          	total = 0
+          	total_deductions_or_additions = 0
           	
           	options[:event_strips].each do |strip|
           		strip[row_num*7, 7].each_with_index do |event, index|
           			if event
-          				total += event.value
+          				total_deductions_or_additions += event.value
           			end
           		end
           	end
           	
-          	cal << %(#{total})
+          	
+          	new = total_deductions_or_additions + event.total
+          	cal << %(____)
+          	cal << %(#{new})
             cal << %(#{day.day})
           end
           cal << %(</td>)
+          total_deductions_or_additions = 0
         end
+        
         cal << %(</tr>)
 
         # event rows for this day
